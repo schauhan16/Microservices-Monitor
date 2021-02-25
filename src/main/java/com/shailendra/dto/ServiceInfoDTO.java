@@ -1,9 +1,12 @@
 package com.shailendra.dto;
 
+import com.shailendra.constants.MicroserviceStatus;
 import org.springframework.lang.NonNull;
 
 import java.util.Objects;
 import java.util.UUID;
+
+import static com.shailendra.constants.MicroserviceStatus.DOWN;
 
 /**
  * @author Shailendra Chauhan
@@ -18,12 +21,15 @@ public class ServiceInfoDTO {
 
     private String name;
 
+    private MicroserviceStatus status;
+
     public ServiceInfoDTO() {
     }
 
     public ServiceInfoDTO(@NonNull String URL) {
         this.id = UUID.randomUUID().toString();
         this.URL = URL;
+        this.status = DOWN;
     }
 
     @Override
@@ -66,5 +72,13 @@ public class ServiceInfoDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public MicroserviceStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(MicroserviceStatus status) {
+        this.status = status;
     }
 }

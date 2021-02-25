@@ -17,6 +17,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.shailendra.constants.MicroserviceStatus.DOWN;
+import static com.shailendra.constants.MicroserviceStatus.UP;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -39,10 +41,10 @@ public class ApiServiceTest {
 
     private List<PingInfo> createPingInfoList() {
         List<PingInfo> pingInfoList = new ArrayList<>();
-        pingInfoList.add(new PingInfo(LocalDateTime.now(), MicroserviceStatus.UP));
-        pingInfoList.add(new PingInfo(LocalDateTime.now(), MicroserviceStatus.UP));
-        pingInfoList.add(new PingInfo(LocalDateTime.now(), MicroserviceStatus.DOWN));
-        pingInfoList.add(new PingInfo(LocalDateTime.now(), MicroserviceStatus.UP));
+        pingInfoList.add(new PingInfo(LocalDateTime.now(), UP));
+        pingInfoList.add(new PingInfo(LocalDateTime.now(), UP));
+        pingInfoList.add(new PingInfo(LocalDateTime.now(), DOWN));
+        pingInfoList.add(new PingInfo(LocalDateTime.now(), UP));
 
         return pingInfoList;
     }
@@ -52,6 +54,7 @@ public class ApiServiceTest {
         apiService.registerService(new ServiceInfoDTO("demoURl"));
         assertEquals(1, apiService.getAllRegisteredServices().size());
         assertNotNull(apiService.getAllRegisteredServices().get(0).getId());
+        assertEquals(DOWN, apiService.getAllRegisteredServices().get(0).getStatus());
     }
 
     @Test

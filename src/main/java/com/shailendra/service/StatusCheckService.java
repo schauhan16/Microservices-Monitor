@@ -75,6 +75,11 @@ public class StatusCheckService {
 
         } catch (IOException ex) {
             LOG.info("Exception occurred while getting status info for service {}", serviceInfoDTO.getURL(), ex);
+            PingInfo pingInfo = new PingInfo();
+            pingInfo.setStatus(DOWN);
+            pingInfo.setTime(LocalDateTime.now());
+
+            msStatusInfoService.addStatusInfo(serviceInfoDTO, pingInfo);
         }
     }
 }

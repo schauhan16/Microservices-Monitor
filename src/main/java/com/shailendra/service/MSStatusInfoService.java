@@ -29,6 +29,7 @@ public class MSStatusInfoService {
      */
     public void addStatusInfo(ServiceInfoDTO serviceInfo, PingInfo pingInfo) {
         List<PingInfo> pingInfoList = getPingInfoList(serviceInfo);
+        serviceInfo.setStatus(pingInfo.getStatus());
         pingInfoList.add(pingInfo);
     }
 
@@ -51,5 +52,9 @@ public class MSStatusInfoService {
      */
     public List<PingInfo> getStatusInfo(ServiceInfoDTO serviceInfo) {
         return getPingInfoList(serviceInfo);
+    }
+
+    public void removeStatus(ServiceInfoDTO serviceInfo){
+        statusInfo.getStatusHashMap().remove(serviceInfo);
     }
 }

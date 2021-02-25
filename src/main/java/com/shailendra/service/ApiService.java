@@ -52,6 +52,7 @@ public class ApiService {
      */
     public void deRegisterService(ServiceInfoDTO serviceInfo) {
         serviceList.remove(serviceInfo);
+        statusInfoService.removeStatus(serviceInfo);
     }
 
     /**
