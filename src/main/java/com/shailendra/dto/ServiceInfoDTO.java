@@ -11,13 +11,13 @@ import static com.shailendra.constants.MicroserviceStatus.DOWN;
 /**
  * @author Shailendra Chauhan
  * <p>
- * Holds the URL, Name and given/auto-generated id for any registered micro-service.
+ * Holds the url, Name and given/auto-generated id for any registered micro-service.
  */
 public class ServiceInfoDTO {
 
     private String id;
 
-    private String URL;
+    private String url;
 
     private String name;
 
@@ -26,9 +26,9 @@ public class ServiceInfoDTO {
     public ServiceInfoDTO() {
     }
 
-    public ServiceInfoDTO(@NonNull String URL) {
+    public ServiceInfoDTO(@NonNull String url) {
         this.id = UUID.randomUUID().toString();
-        this.URL = URL;
+        this.url = url;
         this.status = DOWN;
     }
 
@@ -40,14 +40,14 @@ public class ServiceInfoDTO {
         ServiceInfoDTO serviceInfo = (ServiceInfoDTO) obj;
 
         boolean isIdEquals = Objects.nonNull(this.id) && this.id.equals(serviceInfo.id);
-        boolean isURLEquals = Objects.nonNull(this.URL) && this.URL.equals(serviceInfo.URL);
+        boolean isurlEquals = Objects.nonNull(this.url) && this.url.equals(serviceInfo.url);
 
-        return isIdEquals || isURLEquals;
+        return isIdEquals || isurlEquals;
     }
 
     @Override
     public int hashCode() {
-        return URL.hashCode();
+        return url.hashCode();
     }
 
     public String getId() {
@@ -58,12 +58,12 @@ public class ServiceInfoDTO {
         this.id = id;
     }
 
-    public String getURL() {
-        return URL;
+    public String getUrl() {
+        return url;
     }
 
-    public void setURL(String URL) {
-        this.URL = URL;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getName() {

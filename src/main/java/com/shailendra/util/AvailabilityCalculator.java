@@ -44,11 +44,6 @@ public class AvailabilityCalculator {
                 .filter(pingInfo -> DOWN.equals(pingInfo.getStatus()))
                 .count();
 
-        //Time difference between first and last call
-//        LocalDateTime startTime = tempList.get(0).getTime();
-//        LocalDateTime endTime = tempList.get(tempList.size() - 1).getTime();
-//        long totalTime = startTime.until(endTime, ChronoUnit.SECONDS);
-
         StatusSummary statusSummary = new StatusSummary();
         statusSummary.setTotalAvailability(getPercentage(upCount, tempList.size()));
         statusSummary.setTotalUnavailability(getPercentage(downCount, tempList.size()));

@@ -41,7 +41,7 @@ public class StatusCheckService {
      * @throws IOException
      */
     @Scheduled(cron = "${health.check.cron:0/10 * * * * ?}")
-    private void healthCheckScheduler() throws IOException {
+    private void healthCheckScheduler() {
         LOG.info("Checking health status");
 
         //To-Do: Every health check should run independently(It will require locking)
@@ -62,10 +62,10 @@ public class StatusCheckService {
      */
     private void checkHealthForService(ServiceInfoDTO serviceInfoDTO) {
         try {
-            URL url = new URL(serviceInfoDTO.getURL());
+            URL url = new URL(serviceInfoDTO.getUrl());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            LOG.info("Service {} returned with response code {}", serviceInfoDTO.getURL(), connection.getResponseCode());
+            LOG.info("Service {} returned with response code {}", serviceInfoDTO.getUrl(), connection.getResponseCode());
             PingInfo pingInfo = new PingInfo();
 
             pingInfo.setStatus(200 == connection.getResponseCode() ? UP : DOWN);
@@ -74,7 +74,7 @@ public class StatusCheckService {
             msStatusInfoService.addStatusInfo(serviceInfoDTO, pingInfo);
 
         } catch (IOException ex) {
-            LOG.info("Exception occurred while getting status info for service {}", serviceInfoDTO.getURL(), ex);
+            LOG.info("Exception occurred while getting status info for service {}", serviceInfoDTO.getUrl(), ex);
             PingInfo pingInfo = new PingInfo();
             pingInfo.setStatus(DOWN);
             pingInfo.setTime(LocalDateTime.now());

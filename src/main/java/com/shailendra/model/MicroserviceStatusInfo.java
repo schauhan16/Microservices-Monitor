@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Shailendra Chauhan
@@ -14,7 +15,7 @@ public class MicroserviceStatusInfo {
 
     private HashMap<ServiceInfoDTO, List<PingInfo>> statusHashMap = new HashMap<>();
 
-    public HashMap<ServiceInfoDTO, List<PingInfo>> getStatusHashMap() {
+    public Map<ServiceInfoDTO, List<PingInfo>> getStatusHashMap() {
         return statusHashMap;
     }
 }
