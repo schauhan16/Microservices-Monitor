@@ -2,6 +2,7 @@ package com.shailendra.service;
 
 import com.shailendra.constants.MicroserviceStatus;
 import com.shailendra.dto.ServiceInfoDTO;
+import com.shailendra.model.MicroserviceStatusInfo;
 import com.shailendra.model.PingInfo;
 import com.shailendra.model.StatusSummary;
 import org.junit.Before;
@@ -32,7 +33,11 @@ public class ApiServiceTest {
     private ApiService apiService;
 
     @Spy
+    @InjectMocks
     private MSStatusInfoService statusInfoService;
+
+    @Spy
+    private MicroserviceStatusInfo statusInfo;
 
     @Before
     public void setUp() {
